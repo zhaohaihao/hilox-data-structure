@@ -1,5 +1,7 @@
 package com.hilox.array;
 
+import java.util.Arrays;
+
 /**
  * Created by Hilox on 2018/11/29 0029.
  */
@@ -88,5 +90,38 @@ public class HiloxArray {
 
         data[index] = e;
         size++;
+    }
+
+    /**
+     * 获取index索引位置的元素
+     * @param index 索引
+     * @return
+     */
+    public int get(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Get failed. Index is illegal.");
+        }
+        return data[index];
+    }
+
+    /**
+     * 修改index索引位置的元素为e
+     * @param index 索引
+     * @param e 元素
+     */
+    public void set(int index, int e) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Get failed. Index is illegal.");
+        }
+        data[index] = e;
+    }
+
+    @Override
+    public String toString() {
+        return "HiloxArray{" +
+                "data=" + Arrays.toString(data) +
+                ", size=" + size +
+                ", capacity=" + data.length +
+                '}';
     }
 }
