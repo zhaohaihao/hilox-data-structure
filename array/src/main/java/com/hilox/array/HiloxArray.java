@@ -98,7 +98,7 @@ public class HiloxArray {
      * @return
      */
     public int get(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
         return data[index];
@@ -110,10 +110,56 @@ public class HiloxArray {
      * @param e 元素
      */
     public void set(int index, int e) {
-        if (index < 0 || index > size) {
-            throw new IllegalArgumentException("Get failed. Index is illegal.");
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Set failed. Index is illegal.");
         }
         data[index] = e;
+    }
+
+    /**
+     * 查找数组中是否有元素e
+     * @param e 元素
+     * @return
+     */
+    public boolean contains(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 查找数组中元素e所在的索引, 如果不存在元素e, 则返回-1
+     * @param e 元素
+     * @return
+     */
+    public int find(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 从数组中删除index位置的元素, 返回删除的元素
+     * @param index 索引
+     * @return
+     */
+    public int remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Remove failed. Index is illegal.");
+        }
+
+        int ret = data[index];
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = data[i];
+        }
+        size--;
+        return ret;
     }
 
     @Override
