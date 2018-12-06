@@ -162,6 +162,36 @@ public class HiloxArray {
         return ret;
     }
 
+    /**
+     * 从数组中删除第一个元素, 返回删除的元素
+     * @return
+     */
+    public int removeFirst() {
+        return remove(0);
+    }
+
+    /**
+     * 从数组中删除最后一个元素, 返回删除的元素
+     * @return
+     */
+    public int removeLast() {
+        return remove(size - 1);
+    }
+
+    /**
+     * 从数组中删除元素e
+     * @param e 元素
+     * @return
+     */
+    public boolean removeElement(int e) {
+        int index = find(e);
+        if (index != -1) {
+            remove(index);
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "HiloxArray{" +
