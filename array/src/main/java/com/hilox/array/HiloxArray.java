@@ -161,7 +161,7 @@ public class HiloxArray<E> {
         size--;
         data[size] = null; // loitering objests != memory leak
 
-        if (size == data.length / 2) {
+        if (size == data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
         }
         return ret;
