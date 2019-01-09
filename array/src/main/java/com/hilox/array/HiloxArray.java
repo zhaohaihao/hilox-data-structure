@@ -5,10 +5,10 @@ import java.util.Arrays;
 /**
  * Created by Hilox on 2018/11/29 0029.
  */
-public class HiloxArray {
+public class HiloxArray<E> {
 
     // 承载的数据
-    private int[] data;
+    private E[] data;
 
     // data数组中有效元素
     private int size;
@@ -25,7 +25,7 @@ public class HiloxArray {
      * @param capacity
      */
     public HiloxArray(int capacity) {
-        data = new int[capacity];
+        data = (E[]) new Object[capacity];
         size = 0;
     }
 
@@ -57,7 +57,7 @@ public class HiloxArray {
      * 向数组的第一位添加一个新的元素
      * @param e
      */
-    public void addFirst(int e) {
+    public void addFirst(E e) {
         add(0, e);
     }
 
@@ -65,7 +65,7 @@ public class HiloxArray {
      * 向数组的最后添加一个新的元素
      * @param e 元素
      */
-    public void addLast(int e) {
+    public void addLast(E e) {
         add(size, e);
     }
 
@@ -74,7 +74,7 @@ public class HiloxArray {
      * @param index 下标
      * @param e 元素
      */
-    public void add(int index, int e) {
+    public void add(int index, E e) {
 
         if (size == getCapacity()) {
             throw new IllegalArgumentException("Add failed. HiloxArray is full.");
@@ -97,7 +97,7 @@ public class HiloxArray {
      * @param index 索引
      * @return
      */
-    public int get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
@@ -109,7 +109,7 @@ public class HiloxArray {
      * @param index 索引
      * @param e 元素
      */
-    public void set(int index, int e) {
+    public void set(int index, E e) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Index is illegal.");
         }
@@ -121,9 +121,9 @@ public class HiloxArray {
      * @param e 元素
      * @return
      */
-    public boolean contains(int e) {
+    public boolean contains(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return true;
             }
         }
@@ -135,9 +135,9 @@ public class HiloxArray {
      * @param e 元素
      * @return
      */
-    public int find(int e) {
+    public int find(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return i;
             }
         }
@@ -149,16 +149,17 @@ public class HiloxArray {
      * @param index 索引
      * @return
      */
-    public int remove(int index) {
+    public E remove(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Remove failed. Index is illegal.");
         }
 
-        int ret = data[index];
+        E ret = data[index];
         for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
         }
         size--;
+        data[size] = null; // loitering objests != memory leak
         return ret;
     }
 
@@ -166,7 +167,7 @@ public class HiloxArray {
      * 从数组中删除第一个元素, 返回删除的元素
      * @return
      */
-    public int removeFirst() {
+    public E removeFirst() {
         return remove(0);
     }
 
@@ -174,7 +175,7 @@ public class HiloxArray {
      * 从数组中删除最后一个元素, 返回删除的元素
      * @return
      */
-    public int removeLast() {
+    public E removeLast() {
         return remove(size - 1);
     }
 
@@ -183,7 +184,7 @@ public class HiloxArray {
      * @param e 元素
      * @return
      */
-    public boolean removeElement(int e) {
+    public boolean removeElement(E e) {
         int index = find(e);
         if (index != -1) {
             remove(index);
