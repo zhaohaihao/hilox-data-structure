@@ -76,12 +76,12 @@ public class HiloxArray<E> {
      */
     public void add(int index, E e) {
 
-        if (size == getCapacity()) {
-            throw new IllegalArgumentException("Add failed. HiloxArray is full.");
-        }
-
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
+        }
+
+        if (size == getCapacity()) {
+            resize(2 * data.length);
         }
 
         for(int i = size - 1; i >= index; i--) {
@@ -160,6 +160,10 @@ public class HiloxArray<E> {
         }
         size--;
         data[size] = null; // loitering objests != memory leak
+
+        if (size == data.length / 2) {
+            resize(data.length / 2);
+        }
         return ret;
     }
 
@@ -200,5 +204,17 @@ public class HiloxArray<E> {
                 ", size=" + size +
                 ", capacity=" + data.length +
                 '}';
+    }
+
+    /**
+     * 动态分配数组
+     * @param capacity
+     */
+    private void resize(int capacity) {
+        E[] newData = (E[]) new Object[capacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 }
