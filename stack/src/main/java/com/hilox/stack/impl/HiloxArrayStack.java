@@ -1,20 +1,20 @@
 package com.hilox.stack.impl;
 
 import com.hilox.array.HiloxArray;
-import com.hilox.stack.base.Stack;
+import com.hilox.stack.base.HiloxStack;
 
 /**
  * Created by Hilox on 2019/1/15.
  */
-public class ArrayStack<E> implements Stack<E> {
+public class HiloxArrayStack<E> implements HiloxStack<E> {
 
     private HiloxArray<E> hiloxArray;
 
-    public ArrayStack() {
+    public HiloxArrayStack() {
         hiloxArray = new HiloxArray<>();
     }
 
-    public ArrayStack(int capacity) {
+    public HiloxArrayStack(int capacity) {
         hiloxArray = new HiloxArray<>(capacity);
     }
 

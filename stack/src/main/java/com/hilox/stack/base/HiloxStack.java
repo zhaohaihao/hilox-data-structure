@@ -3,7 +3,7 @@ package com.hilox.stack.base;
 /**
  * Created by Hilox on 2019/1/15.
  */
-public interface Stack<E> {
+public interface HiloxStack<E> {
 
     /**
      * 获取栈的大小

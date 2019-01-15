@@ -1,6 +1,6 @@
 package com.hilox.stack;
 
-import com.hilox.stack.impl.ArrayStack;
+import com.hilox.stack.impl.HiloxArrayStack;
 
 /**
  * Created by Hilox on 2019/1/15.
@@ -8,13 +8,13 @@ import com.hilox.stack.impl.ArrayStack;
 public class MainTest {
 
     public static void main(String[] args) {
-        ArrayStack<Integer> arrayStack = new ArrayStack<>();
+        HiloxArrayStack<Integer> hiloxArrayStack = new HiloxArrayStack<>();
         for (int i = 0; i < 5; i++) {
-            arrayStack.push(i);
-            System.out.println(arrayStack);
+            hiloxArrayStack.push(i);
+            System.out.println(hiloxArrayStack);
         }
 
-        arrayStack.pop();
-        System.out.println(arrayStack);
+        hiloxArrayStack.pop();
+        System.out.println(hiloxArrayStack);
     }
 }
