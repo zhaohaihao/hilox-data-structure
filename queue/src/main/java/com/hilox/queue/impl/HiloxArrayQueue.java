@@ -64,4 +64,16 @@ public class HiloxArrayQueue<E> implements HiloxQueue<E> {
         sb.append("] tail");
         return sb.toString();
     }
-}
+
+    public static void main(String[] args) {
+        HiloxArrayQueue<Integer> hiloxArrayQueue = new HiloxArrayQueue<>();
+        for (int i = 0; i < 10; i++) {
+            hiloxArrayQueue.enqueue(i);
+            System.out.println(hiloxArrayQueue);
+
+            if (i % 3 == 2) {
+                hiloxArrayQueue.dequeue();
+                System.out.println(hiloxArrayQueue);
+            }
+        }
+    }}
