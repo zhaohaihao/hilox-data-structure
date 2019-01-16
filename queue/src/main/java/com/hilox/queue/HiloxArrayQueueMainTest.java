@@ -5,7 +5,7 @@ import com.hilox.queue.impl.HiloxArrayQueue;
 /**
  * Created by Hilox on 2019/1/15 0015.
  */
-public class MainTest {
+public class HiloxArrayQueueMainTest {
 
     public static void main(String[] args) {
         HiloxArrayQueue<Integer> hiloxArrayQueue = new HiloxArrayQueue<>();
