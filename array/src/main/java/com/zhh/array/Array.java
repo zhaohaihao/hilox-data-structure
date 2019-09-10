@@ -87,12 +87,13 @@ public class Array<T> {
      * @param e     元素
      */
     public void add(int index, T e) {
-        if (size == getCapacity()) {
-            // TODO
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
         }
 
-        if (index < 0 || index >= size) {
-            // TODO
+        if (size == getCapacity()) {
+            // 数组扩容
+            resize(2 * getCapacity());
         }
 
         for (int i = size - 1; i >= index; i--) {
@@ -111,7 +112,7 @@ public class Array<T> {
      */
     public T get(int index) {
         if (index < 0 || index >= size) {
-            // TODO
+            throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
         }
 
         return data[index];
@@ -125,7 +126,7 @@ public class Array<T> {
      */
     public void set(int index, T e) {
         if (index < 0 || index >= size) {
-            // TODO
+            throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
         }
 
         data[index] = e;
@@ -187,7 +188,7 @@ public class Array<T> {
      */
     public T remove(int index) {
         if (index < 0 || index >= size) {
-            // TODO
+            throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
         }
 
         T result = data[index];
@@ -196,6 +197,12 @@ public class Array<T> {
         }
         size--;
         data[size] = null;
+
+        if (size == getCapacity() / 4 && getCapacity() / 2 != 0) {
+            // 数组缩减
+            resize(getCapacity() / 2);
+        }
+
         return result;
     }
 
@@ -227,5 +234,19 @@ public class Array<T> {
         sb.append("]");
 
         return sb.toString();
+    }
+
+    /**
+     * 数组扩容/缩减
+     *
+     * @param newCapacity 新容量
+     */
+    private void resize(int newCapacity) {
+        T[] newData = (T[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+
+        data = newData;
     }
 }
