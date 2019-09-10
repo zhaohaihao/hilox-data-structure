@@ -7,12 +7,12 @@ import java.util.StringJoiner;
  * @description 数组
  * @date 2019-09-10 15:29
  */
-public class Array {
+public class Array<T> {
 
     /**
      * 数据
      */
-    private int[] data;
+    private T[] data;
 
     /**
      * 大小
@@ -32,7 +32,7 @@ public class Array {
      * @param capacity 容量
      */
     public Array(int capacity) {
-        data = new int[capacity];
+        data = (T[]) new Object[capacity];
     }
 
     /**
@@ -67,7 +67,7 @@ public class Array {
      *
      * @param e 元素
      */
-    public void addFirst(int e) {
+    public void addFirst(T e) {
         add(0, e);
     }
 
@@ -76,7 +76,7 @@ public class Array {
      *
      * @param e 元素
      */
-    public void addLast(int e) {
+    public void addLast(T e) {
         add(size, e);
     }
 
@@ -86,7 +86,7 @@ public class Array {
      * @param index 数组下标
      * @param e     元素
      */
-    public void add(int index, int e) {
+    public void add(int index, T e) {
         if (size == getCapacity()) {
             // TODO
         }
@@ -109,7 +109,7 @@ public class Array {
      * @param index 数组下标
      * @return
      */
-    public int get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= size) {
             // TODO
         }
@@ -123,7 +123,7 @@ public class Array {
      * @param index 数组下标
      * @param e     元素
      */
-    public void set(int index, int e) {
+    public void set(int index, T e) {
         if (index < 0 || index >= size) {
             // TODO
         }
@@ -137,9 +137,9 @@ public class Array {
      * @param e 元素
      * @return
      */
-    public boolean contains(int e) {
+    public boolean contains(T e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return true;
             }
         }
@@ -152,9 +152,9 @@ public class Array {
      * @param e 元素
      * @return
      */
-    public int find(int e) {
+    public int find(T e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e) {
+            if (data[i].equals(e)) {
                 return i;
             }
         }
@@ -166,7 +166,7 @@ public class Array {
      *
      * @return
      */
-    public int removeFisrt() {
+    public T removeFisrt() {
         return remove(0);
     }
 
@@ -175,7 +175,7 @@ public class Array {
      *
      * @return
      */
-    public int removeLast() {
+    public T removeLast() {
         return remove(size - 1);
     }
 
@@ -185,16 +185,17 @@ public class Array {
      * @param index 数组下标
      * @return
      */
-    public int remove(int index) {
+    public T remove(int index) {
         if (index < 0 || index >= size) {
             // TODO
         }
 
-        int result = data[index];
+        T result = data[index];
         for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
         }
         size--;
+        data[size] = null;
         return result;
     }
 
@@ -203,7 +204,7 @@ public class Array {
      *
      * @param e 元素
      */
-    public void removeElement(int e) {
+    public void removeElement(T e) {
         int index = find(e);
 
         if (index != -1) {
