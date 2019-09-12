@@ -119,6 +119,24 @@ public class Array<E> {
     }
 
     /**
+     * 获取第一个元素
+     *
+     * @return
+     */
+    public E getFirst() {
+        return get(0);
+    }
+
+    /**
+     * 获取最后一个元素
+     *
+     * @return
+     */
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    /**
      * 修改index索引位置的元素
      *
      * @param index 数组下标
