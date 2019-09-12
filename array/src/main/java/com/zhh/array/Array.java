@@ -7,12 +7,12 @@ import java.util.StringJoiner;
  * @description 数组
  * @date 2019-09-10 15:29
  */
-public class Array<T> {
+public class Array<E> {
 
     /**
      * 数据
      */
-    private T[] data;
+    private E[] data;
 
     /**
      * 大小
@@ -32,7 +32,7 @@ public class Array<T> {
      * @param capacity 容量
      */
     public Array(int capacity) {
-        data = (T[]) new Object[capacity];
+        data = (E[]) new Object[capacity];
     }
 
     /**
@@ -67,7 +67,7 @@ public class Array<T> {
      *
      * @param e 元素
      */
-    public void addFirst(T e) {
+    public void addFirst(E e) {
         add(0, e);
     }
 
@@ -76,7 +76,7 @@ public class Array<T> {
      *
      * @param e 元素
      */
-    public void addLast(T e) {
+    public void addLast(E e) {
         add(size, e);
     }
 
@@ -86,7 +86,7 @@ public class Array<T> {
      * @param index 数组下标
      * @param e     元素
      */
-    public void add(int index, T e) {
+    public void add(int index, E e) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
         }
@@ -110,7 +110,7 @@ public class Array<T> {
      * @param index 数组下标
      * @return
      */
-    public T get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
         }
@@ -124,7 +124,7 @@ public class Array<T> {
      * @param index 数组下标
      * @param e     元素
      */
-    public void set(int index, T e) {
+    public void set(int index, E e) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
         }
@@ -138,7 +138,7 @@ public class Array<T> {
      * @param e 元素
      * @return
      */
-    public boolean contains(T e) {
+    public boolean contains(E e) {
         for (int i = 0; i < size; i++) {
             if (data[i].equals(e)) {
                 return true;
@@ -153,7 +153,7 @@ public class Array<T> {
      * @param e 元素
      * @return
      */
-    public int find(T e) {
+    public int find(E e) {
         for (int i = 0; i < size; i++) {
             if (data[i].equals(e)) {
                 return i;
@@ -167,7 +167,7 @@ public class Array<T> {
      *
      * @return
      */
-    public T removeFisrt() {
+    public E removeFisrt() {
         return remove(0);
     }
 
@@ -176,7 +176,7 @@ public class Array<T> {
      *
      * @return
      */
-    public T removeLast() {
+    public E removeLast() {
         return remove(size - 1);
     }
 
@@ -186,12 +186,12 @@ public class Array<T> {
      * @param index 数组下标
      * @return
      */
-    public T remove(int index) {
+    public E remove(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
         }
 
-        T result = data[index];
+        E result = data[index];
         for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
         }
@@ -211,7 +211,7 @@ public class Array<T> {
      *
      * @param e 元素
      */
-    public void removeElement(T e) {
+    public void removeElement(E e) {
         int index = find(e);
 
         if (index != -1) {
@@ -242,7 +242,7 @@ public class Array<T> {
      * @param newCapacity 新容量
      */
     private void resize(int newCapacity) {
-        T[] newData = (T[]) new Object[newCapacity];
+        E[] newData = (E[]) new Object[newCapacity];
         for (int i = 0; i < size; i++) {
             newData[i] = data[i];
         }
