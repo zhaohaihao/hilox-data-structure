@@ -11,6 +11,7 @@
     <modules>
         <module>01-array</module>
         <module>02-stack</module>
+        <module>03-queue</module>
     </modules>
 
     <properties>
