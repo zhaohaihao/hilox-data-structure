@@ -144,7 +144,7 @@ public class Array<E> {
      */
     public void set(int index, E e) {
         if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
+            throw new IllegalArgumentException("修改失败, 数组下标必须大于等于0且小于数组的大小");
         }
 
         data[index] = e;
@@ -206,7 +206,7 @@ public class Array<E> {
      */
     public E remove(int index) {
         if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
+            throw new IllegalArgumentException("删除失败, 数组下标必须大于等于0且小于数组的大小");
         }
 
         E result = data[index];
