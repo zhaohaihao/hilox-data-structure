@@ -1,6 +1,7 @@
 package com.zhh.queue;
 
 import com.zhh.queue.impl.ArrayQueue;
+import com.zhh.queue.impl.LinkedListQueue;
 import com.zhh.queue.impl.LoopQueue;
 
 import java.util.Random;
@@ -20,6 +21,9 @@ public class QueueTest {
 
         LoopQueue<Integer> loopQueue = new LoopQueue<>();
         System.out.println(String.format("LoopQueue spend %s s", queueTest(loopQueue, opCount)));
+
+        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+        System.out.println(String.format("LinkedListQueue spend %s s", queueTest(linkedListQueue, opCount)));
     }
 
     /**
