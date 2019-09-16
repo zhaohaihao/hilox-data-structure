@@ -1,5 +1,7 @@
 package com.zhh.linkedlist;
 
+import java.util.StringJoiner;
+
 /**
  * @author zhh
  * @description 链表
@@ -40,7 +42,7 @@ public class LinkedList<E> {
     }
 
     /**
-     * 在链表的index(从0开始计)位置添加新元素
+     * 在链表的第index(从0开始计)位置添加新元素
      *
      * @param index 索引
      * @param e     元素
@@ -77,6 +79,95 @@ public class LinkedList<E> {
      */
     public void addLast(E e) {
         add(size, e);
+    }
+
+    /**
+     * 获取链表第index(从0开始计)位置的元素
+     *
+     * @param index 索引
+     * @return
+     */
+    public E get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("获取失败, 索引异常");
+        }
+
+        Node current = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        return current.e;
+    }
+
+    /**
+     * 获取链表的第一个元素
+     *
+     * @return
+     */
+    public E getFirst() {
+        return get(0);
+    }
+
+    /**
+     * 获取链表的最后一个元素
+     *
+     * @return
+     */
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    /**
+     * 修改链表的第index(从0开始计)位置的元素为e
+     *
+     * @param index 索引
+     * @param e     元素
+     */
+    public void set(int index, E e) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("修改失败, 索引异常");
+        }
+
+        Node current = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        current.e = e;
+    }
+
+    /**
+     * 查找链表中是否存在元素e
+     *
+     * @param e 元素
+     * @return
+     */
+    public boolean contains(E e) {
+        Node current = dummyHead.next;
+        while (current != null) {
+            if (current.e.equals(e)) {
+                return true;
+            }
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner res = new StringJoiner(" -> ");
+
+        Node current = dummyHead.next;
+        while (current != null) {
+            res.add(current + "");
+            current = current.next;
+        }
+
+        res.add("NULL");
+
+        return res.toString();
     }
 
 
