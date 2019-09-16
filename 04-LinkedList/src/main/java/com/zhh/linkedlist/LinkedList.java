@@ -138,6 +138,48 @@ public class LinkedList<E> {
     }
 
     /**
+     * 从链表中删除第index(从0开始计)位置的元素, 并返回删除的元素
+     *
+     * @param index 索引
+     * @return
+     */
+    public E remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("删除失败, 索引异常");
+        }
+
+        Node prev = dummyHead;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        retNode.next = null;
+        size--;
+
+        return retNode.e;
+    }
+
+    /**
+     * 从链表中删除第一个元素, 并返回删除的元素
+     *
+     * @return
+     */
+    public E removeFirst() {
+        return remove(0);
+    }
+
+    /**
+     * 从链表中删除最后一个元素, 并返回删除的元素
+     *
+     * @return
+     */
+    public E removeLast() {
+        return remove(size - 1);
+    }
+
+    /**
      * 查找链表中是否存在元素e
      *
      * @param e 元素
