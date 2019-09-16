@@ -87,8 +87,8 @@ public class Array<E> {
      * @param e     元素
      */
     public void add(int index, E e) {
-        if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于数组的大小");
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("添加失败, 数组下标必须大于等于0且小于等于数组的大小");
         }
 
         if (size == getCapacity()) {
