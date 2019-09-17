@@ -47,7 +47,7 @@ public class LinkedListQueue<E> implements Queue<E> {
     @Override
     public E dequeue() {
         if (isEmpty()) {
-            throw new IllegalArgumentException("无法从空栈中取出元素");
+            throw new IllegalArgumentException("无法从空队列中取出元素");
         }
 
         Node retNode = head;
